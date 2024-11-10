@@ -88,7 +88,7 @@ def main():
     Returns: None"""
 
     # specify animal name for API request
-    animal_name = 'fox'
+    animal_name = input("Please enter animal name: ")
 
     # fetch data from API
     animal_data = fetch_animals_data(animal_name)
@@ -96,6 +96,7 @@ def main():
     # check if data is available/existing before creating html
     if animal_data:
         generate_animal_html(animal_data)
+        print("Website was successfully generated to the file animals.html")
 
     else:
         print(f"No data found for specified animal {animal_name}.")

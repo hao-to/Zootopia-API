@@ -13,13 +13,12 @@ def fetch_animals_data(animal_name):
         data = response.json()
         if data:  # if data available
             return data
-        else:  # if list is empty (specified animal not found)
-            print(f"No results found for the specified animal: {animal_name}.")
+        else:  # return empty list, if animal not found
             return []
     else:
         print(f"Error: {response.status_code}")
         return []
 
 
-animal_data = fetch_animals_data('fox')
-print(animal_data)
+animal_data = fetch_animals_data('animal_name')
+
