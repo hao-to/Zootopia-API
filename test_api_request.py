@@ -20,5 +20,5 @@ def fetch_animals_data(animal_name):
         return []
 
 
-animal_data = fetch_animals_data('animal_name')
+
 

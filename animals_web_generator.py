@@ -1,4 +1,4 @@
-from test_api_request import fetch_animals_data
+from data_fetcher import fetch_data
 
 
 def load_file_content(file_path):
@@ -61,10 +61,10 @@ def serialize_animal(animal):
     return output
 
 
-def generate_animal_html(data):
+def generate_animal_html(animal_data):
     """loads html template, serializes each animal to html and saves result in new html file.
 
-    Args: data (list): list of dictionaries, each representing an animal's data
+    Args: animal_data (list): list of dictionaries, each representing an animal's data
 
     Returns: None"""
 
@@ -72,10 +72,10 @@ def generate_animal_html(data):
     html_template = load_file_content('animals_template.html')
 
     # check if data is available. if not, display a custom message.
-    if data:
+    if animal_data:
         # generate html code for each animal and add it to list
         output = ""
-        for animal in data:
+        for animal in animal_data:
             output += serialize_animal(animal)
 
     else:
@@ -97,12 +97,12 @@ def main():
     animal_name = input("Please enter animal name: ")
 
     # fetch data from API
-    animal_data = fetch_animals_data(animal_name)
+    animal_data = fetch_data(animal_name)
 
-    # generate html
     generate_animal_html(animal_data)
 
     if animal_data:
+        generate_animal_html(animal_data)
         print("Website was successfully generated to the file animals.html")
 
     else:
