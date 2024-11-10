@@ -71,15 +71,21 @@ def generate_animal_html(data):
     # load html template using load_file_content function
     html_template = load_file_content('animals_template.html')
 
-    # generate html code for each animal and add it to list
-    output = ""
-    for animal in data:
-        output += serialize_animal(animal)
+    # check if data is available. if not, display a custom message.
+    if data:
+        # generate html code for each animal and add it to list
+        output = ""
+        for animal in data:
+            output += serialize_animal(animal)
+
+    else:
+        # display a message, if no data is found
+        output = "<h2>The animal you searched for doesn't exist.</h2>"
 
     # replace placeholder in html template with generated html
     html_content = html_template.replace('__REPLACE_ANIMALS_INFO__', output)
 
-    # save generated HTML content to the specified output file
+    # save generated html content to the specified output file
     save_text_to_file('animals.html', html_content)
 
 
@@ -93,13 +99,14 @@ def main():
     # fetch data from API
     animal_data = fetch_animals_data(animal_name)
 
-    # check if data is available/existing before creating html
+    # generate html
+    generate_animal_html(animal_data)
+
     if animal_data:
-        generate_animal_html(animal_data)
         print("Website was successfully generated to the file animals.html")
 
     else:
-        print(f"No data found for specified animal {animal_name}.")
+        print(f"No data found for specified animal '{animal_name}'.")
 
 
 if __name__ == "__main__":
