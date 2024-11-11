@@ -1,7 +1,9 @@
+import os
 import requests
+from dotenv import load_dotenv
 
-# API key and base URL as constants
-API_KEY = "kfRa7vAQiOLK6A+Z5erqnQ==1BeNIqtXX7CBbUT2"
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 BASE_URL = "https://api.api-ninjas.com/v1/animals"
 
 
